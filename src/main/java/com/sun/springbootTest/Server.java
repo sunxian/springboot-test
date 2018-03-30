@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Server 
 {
     public static void main( String[] args ) throws Exception
-    {
+    {   System.setProperty("spring.devtools.restart.enabled", "true");
+
     	SpringApplication.run(Server.class, args);
         
     }

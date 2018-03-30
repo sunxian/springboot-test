@@ -1,0 +1,9 @@
+spring:
+  redis: 
+     host: gdc-nba-api-01.offline.hupu.com
+     port: 6379
+     password: 
+     timeout: 3000
+     
+      
+      
