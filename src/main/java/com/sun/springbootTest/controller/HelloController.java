@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.Message;
+import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.StringRedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sun.springbootTest.entity.User;
-import com.sun.springbootTest.utils.UserRedisSerialier;
+//import com.sun.springbootTest.utils.HashMapping;
+
 
 @RestController
 public class HelloController {
@@ -25,13 +28,15 @@ public class HelloController {
 	//redis-cli后 输入CONFIG SET protected-mode no
 	@Autowired
     StringRedisTemplate redisTemplate;
-	
+	//@Autowired
+	//HashMapping hashMapping;
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/sun")
 	public String s() {
 		
 		redisTemplate.opsForValue().set("sun", "123");	
+		redisTemplate.convertAndSend("soccer.player.match", "sssssss");
 		User u=new User();
 		u.setAge(10);
 		u.setName("tom");
@@ -40,12 +45,19 @@ public class HelloController {
 		User user=u1.deserialize(b);
 		log.info("s:",user.toString());
 		
-		
+		redisTemplate.getConnectionFactory().getConnection().subscribe(new MessageListener() {
+			
+			@Override
+			public void onMessage(Message message, byte[] pattern) {
+				
+				
+			}
+		});
 		
 		log.info(new String(b));
 		redisTemplate.opsForValue().set("json", new String(b));
 		//JdkSerializationRedisSerializer s=new JdkSerializationRedisSerializer();
-		
+		//hashMapping.writeHash("woxian", user);
 		
 		//JdkSerializationRedis Serializer RedisCache,RedisTemplate默认
 		//rediscallback

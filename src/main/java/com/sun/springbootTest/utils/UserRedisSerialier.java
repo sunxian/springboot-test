@@ -1,4 +1,4 @@
-package com.sun.springbootTest.utils;
+/*package com.sun.springbootTest.utils;
 
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
@@ -55,3 +55,4 @@ public class UserRedisSerialier extends JdkSerializationRedisSerializer{
 	
 	
 }
+*/
