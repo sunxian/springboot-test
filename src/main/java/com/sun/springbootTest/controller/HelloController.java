@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sun.springbootTest.entity.User;
 
+
+
 @RestController
 public class HelloController {
 	Logger log=LoggerFactory.getLogger(HelloController.class);
@@ -21,13 +23,15 @@ public class HelloController {
 	//redis-cli后 输入CONFIG SET protected-mode no
 	@Autowired
     StringRedisTemplate redisTemplate;
-	
+	//@Autowired
+	//HashMapping hashMapping;
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/sun")
 	public String s() {
 		
 		redisTemplate.opsForValue().set("sun", "123");	
+		redisTemplate.convertAndSend("soccer.player.match", "sssssss");
 		User u=new User();
 		u.setAge(10);
 		u.setName("tom");
@@ -38,7 +42,7 @@ public class HelloController {
 		log.info(new String(b));
 		redisTemplate.opsForValue().set("json", new String(b));
 		//JdkSerializationRedisSerializer s=new JdkSerializationRedisSerializer();
-		
+		//hashMapping.writeHash("woxian", user);
 		
 		//JdkSerializationRedis Serializer RedisCache,RedisTemplate默认
 		//rediscallback
