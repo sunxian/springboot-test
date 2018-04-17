@@ -7,15 +7,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.StringRedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sun.springbootTest.entity.User;
-import com.sun.springbootTest.utils.UserRedisSerialier;
 
 @RestController
 public class HelloController {
@@ -39,9 +35,6 @@ public class HelloController {
 		byte[] b=u1.serialize(u);
 		User user=u1.deserialize(b);
 		log.info("s:",user.toString());
-		
-		
-		
 		log.info(new String(b));
 		redisTemplate.opsForValue().set("json", new String(b));
 		//JdkSerializationRedisSerializer s=new JdkSerializationRedisSerializer();
