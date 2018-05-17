@@ -1,5 +1,7 @@
 package com.sun.springbootTest.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sun.springbootTest.annotation.TODO;
+import com.sun.springbootTest.domain.p.entity.Country;
+import com.sun.springbootTest.domain.p.repository.CountryRepository;
 import com.sun.springbootTest.entity.User;
 
 
-@TODO
+
 @RestController
 public class HelloController {
 	Logger log=LoggerFactory.getLogger(HelloController.class);
@@ -60,5 +64,15 @@ public class HelloController {
 		return "ok";
 		
 	}
+	@Autowired
+	CountryRepository c;
+	
+	@RequestMapping("/sun1")
+	public List<Country> ss() {
+		
+		return c.findAll();
+		
+	}
+	
 
 }

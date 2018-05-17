@@ -1,13 +1,9 @@
 spring:
   cache:
     #cache-names: cache1,cache2
-    redis:
-    
+    redis:   
       time-to-live: 600000
- #cache 10 min       
-    
-    
-      
+ #cache 10 min            
       
   redis: 
      host: gdc-nba-api-01.offline.hupu.com
